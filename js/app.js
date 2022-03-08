@@ -15,8 +15,24 @@ burger.addEventListener('click', function () {
     alterNav.classList.toggle('open');
   });
 
-const tl = gsap.timeline({defaults:{duration: 0.75, ease: 'power1.out'}})
+  const nav = document.querySelector('.nav');
 
-// gsap.set('.hero__txt1',{display: block})
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 5);
+  });
 
-tl.fromTo('.hero__txt1',{x: -10, opacity: 0}, {x: 0, opacity: 1})
+  const abTxt = document.querySelector('.about__title')
+  const letters = abTxt.textContent.split("")
+
+  abTxt.textContent = ""
+
+  letters.forEach((letter) => {
+    abTxt.innerHTML += '<span class="letter">' + letter + '</span>'
+  })
+  gsap.set('.letter', {display: 'inline-block'})
+  gsap.registerPlugin(ScrollTrigger)  
+  // const abTl = gsap.timeline({defaults: {duration: 0.75, ease: 'power1.out'}})
+  gsap.fromTo('.letter',{y: 100}, {scrollTrigger: {
+    trigger: '.about__title',
+    start: 'center 90%'
+  }, y: 0, stagger: 0.1})

@@ -1,7 +1,7 @@
 
 // vars
-$off-white: #f3f4f5
-$off-black: #2e2d40
+$off-white: #cacaca
+$off-black: #202020
 $accent-color: #DA6A26
 $accent-blue: #009ACB
 $time: all .2s ease-out
@@ -22,6 +22,9 @@ body
     top: 0
     height: 100px
     width: 100%
+    transition: $time
+    &.scrolled
+        background: $off-black
     &__logo
         position: absolute
         left: 5%
@@ -86,7 +89,6 @@ body
         background-color: $off-white
         margin: .3rem 0
         transition: $time    
-
 .hero
     width: 100%
     display: flex
@@ -274,18 +276,38 @@ body
         align-items: center
         position: relative
         border-radius: 10px
-        &::after
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
-            width: 70%;
-            height: 2%;
-            background-color: $accent-color
-            border-top-left-radius: 8px;
-            border-top-right-radius: 8px;
+        transition: $time
+        overflow-y: hidden 
+        &:hover
+            .services__btn
+                display: block
+            .services__line
+                bottom: 0;
+    &__line
+        position: absolute;
+        bottom: -8%;
+        left: 50%;
+        transition: $time
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+        width: 70%;
+        height: 10%;
+        background-color: $accent-color
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        display: flex
+        overflow: hidden
+        justify-content: center
+        align-items: center
+    &__btn
+        display: block
+        font-family: 'Poppins', sans-serif
+        font-style: normal
+        font-weight: 300
+        text-decoration: none
+        font-size: 16px
+        text-align: left
+        color: $off-white
     &__icon
         width: 5rem
         position: absolute 
